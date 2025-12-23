@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace GameStore.Api.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class ChangeName : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,7 +27,7 @@ namespace GameStore.Api.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "games",
+                name: "Games",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -37,18 +39,31 @@ namespace GameStore.Api.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_games", x => x.Id);
+                    table.PrimaryKey("PK_Games", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_games_Genres_GenreId",
+                        name: "FK_Games_Genres_GenreId",
                         column: x => x.GenreId,
                         principalTable: "Genres",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Genres",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Action" },
+                    { 2, "Adventure" },
+                    { 3, "Role-Playing" },
+                    { 4, "Strategy" },
+                    { 5, "Sports" },
+                    { 6, "Simulation" }
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_games_GenreId",
-                table: "games",
+                name: "IX_Games_GenreId",
+                table: "Games",
                 column: "GenreId");
         }
 
@@ -56,7 +71,7 @@ namespace GameStore.Api.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "games");
+                name: "Games");
 
             migrationBuilder.DropTable(
                 name: "Genres");

@@ -3,28 +3,28 @@ GET http://localhost:5115/games
 
 
 ### Invoke a specific game by ID
-GET http://localhost:5115/games/8
+GET http://localhost:5115/games/1
 
 ### Create a new game
 POST http://localhost:5115/games
 Content-Type: application/json
 
 {
-    "Name": "The Legend of Zelda: Breath of the Wild",
-    "genre": "Action-adventure",
-    "price": 200,
+    "Name": "Animmal Crossing",
+    "genreId": 2,
+    "price": 15.99,
     "releaseDate": "2017-03-03"
 }
 
 ### Update a specific game by ID
-PUT http://localhost:5115/games/8
+PUT http://localhost:5115/games/1
 Content-Type: application/json
 
 {
-    "name": "Super Mario Bros.",
-    "genre": "Platformer",
-    "price": 39.99,
-    "releaseDate": "1985-09-13"
+    "name": "The Legend of Zelda: Breath of the Wild",
+    "genreId": 5,
+    "price": 22.22,
+    "releaseDate": "2001-09-13"
 }
 
 ### Delete a specific game by ID
