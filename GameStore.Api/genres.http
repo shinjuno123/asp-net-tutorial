@@ -1,0 +1,2 @@
+### List all games
+GET http://localhost:5115/genres
